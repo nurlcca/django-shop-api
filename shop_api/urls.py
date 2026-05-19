@@ -16,23 +16,31 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from product import views
-from users import views as user_views
+from product.views import (
+    CategoryListCreateAPIView,
+    CategoryDetailAPIView,
+    ProductListCreateAPIView,
+    ProductDetailAPIView,
+    ProductReviewsAPIView,
+    ReviewListCreateAPIView,
+    ReviewDetailAPIView
+)
+from users.views import RegisterAPIView, LoginAPIView, ConfirmAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('api/v1/categories/', views.category_list_api_view),
-    path('api/v1/categories/<int:id>/', views.category_detail_api_view),
+    path('api/v1/categories/', CategoryListCreateAPIView.as_view()),
+    path('api/v1/categories/<int:id>/', CategoryDetailAPIView.as_view()),
 
-    path('api/v1/products/', views.product_list_api_view),
-    path('api/v1/products/<int:id>/', views.product_detail_api_view),
-    path('api/v1/products/reviews/', views.product_reviews_api_view),
+    path('api/v1/products/', ProductListCreateAPIView.as_view()),
+    path('api/v1/products/<int:id>/', ProductDetailAPIView.as_view()),
+    path('api/v1/products/reviews/', ProductReviewsAPIView.as_view()),
 
-    path('api/v1/reviews/', views.review_list_api_view),
-    path('api/v1/reviews/<int:id>/', views.review_detail_api_view),
+    path('api/v1/reviews/', ReviewListCreateAPIView.as_view()),
+    path('api/v1/reviews/<int:id>/', ReviewDetailAPIView.as_view()),
 
-    path('api/v1/users/register/', user_views.register_api_view),
-    path('api/v1/users/login/', user_views.login_api_view),
-    path('api/v1/users/confirm/', user_views.confirm_api_view),
+    path('api/v1/users/register/', RegisterAPIView.as_view()),
+    path('api/v1/users/login/', LoginAPIView.as_view()),
+    path('api/v1/users/confirm/', ConfirmAPIView.as_view()),
 ]
