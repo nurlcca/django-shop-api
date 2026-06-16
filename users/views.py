@@ -1,3 +1,5 @@
+import email
+
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
@@ -37,7 +39,7 @@ class LoginAPIView(APIView):
             username = serializer.validated_data['username']
             password = serializer.validated_data['password']
 
-            user = authenticate(username=username, password=password)
+            user = authenticate(request, username=email, password=password)
 
             if user is None:
                 return Response(
