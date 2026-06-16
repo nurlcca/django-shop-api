@@ -139,3 +139,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "users.CustomUser"
+
+GOOGLE_CLIENT_ID = "your-client-id"
+GOOGLE_CLIENT_SECRET = "your-client-secret"
+GOOGLE_REDIRECT_URI = "http://127.0.0.1:8000/api/v1/users/google/callback/"

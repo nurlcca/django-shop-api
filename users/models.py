@@ -9,6 +9,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     birthdate = models.DateField(blank=True, null=True)
 
+    first_name = models.CharField(max_length=100, blank=True)
+    last_name = models.CharField(max_length=100, blank=True)
+    registration_source = models.CharField(max_length=20, default="local")
+
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
 

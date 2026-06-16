@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path
+from users.views import GoogleLoginAPIView, GoogleCallbackAPIView
 
 from product.views import (
     CategoryListCreateAPIView,
@@ -41,4 +42,7 @@ urlpatterns = [
         CustomTokenObtainPairView.as_view(),
         name='token_obtain_pair',
     ),
+    
+    path("api/v1/users/google/login/", GoogleLoginAPIView.as_view()),
+    path("api/v1/users/google/callback/", GoogleCallbackAPIView.as_view()),
 ]
