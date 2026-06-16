@@ -9,6 +9,8 @@ from rest_framework import status
 
 from .models import ConfirmCode
 from .serializers import RegisterSerializer, LoginSerializer, ConfirmSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import CustomTokenObtainPairSerializer
 
 
 class RegisterAPIView(APIView):
@@ -95,3 +97,6 @@ class ConfirmAPIView(APIView):
             return Response({'message': 'User confirmed successfully.'})
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
